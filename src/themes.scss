@@ -1,0 +1,62 @@
+$themes: (
+    light: (
+        textColor: #000,
+        bg: #fff,
+        bgSoft: #f6f3f3,
+        textColorSoft: #555,
+        textColorSoft2: #777,
+        border: rgb(65, 60, 65),
+        highlight: #075ce5
+    ),
+    dark: (
+        textColor: whitesmoke,
+        bg: #222,
+        bgSoft: #333,
+        textColorSoft: lightgray,
+        textColorSoft2: #777,
+        border: rgb(126, 118, 118),
+        highlight: #609dff
+    )
+);
+
+@mixin themify($themes) {
+    @each $theme, $map in $themes {
+        .theme-#{$theme} & {
+            $theme: $theme !global;
+            $theme-map: () !global;
+            @each $key, $submap in $map {
+                $value: map-get(map-get($themes, $theme), "#{$key}");
+                $theme-map: map-merge(
+                    $theme-map,
+                    (
+                        $key: $value
+                    )
+                ) !global;
+            }
+            @content;
+            $theme-map: null !global;
+        }
+    }
+}
+
+@function themed($key) {
+    @return map-get($theme-map, $key);
+}
+
+@mixin mobile {
+    @media (max-width: 720px) {
+        @content;
+    }
+}
+
+@mixin mediumScreen {
+    @media (max-width: 1280px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: 960px) {
+        @content;
+    }
+}

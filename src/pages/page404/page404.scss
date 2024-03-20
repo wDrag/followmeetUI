@@ -1,0 +1,31 @@
+.page404 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .page404__img {
+        margin-top: 20svh;
+        width: 70svw;
+        height: 70svh;
+        object-fit: cover;
+        //blur the image
+        filter: blur(5px);
+    }
+
+    .page404__code {
+        position: absolute;
+        font-size: 20svw;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 0 0 10px #000;
+    }
+
+    .page404__text {
+        margin-top: 45svh;
+        position: absolute;
+        font-size: 5svw;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 0 0 10px #000;
+    }
+}

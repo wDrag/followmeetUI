@@ -1,0 +1,203 @@
+@import "../../themes.scss";
+
+.profile {
+    padding-left: 16vw;
+    padding-right: 26vw;
+    margin-top: 4svh;
+
+    @include tablet {
+        padding-right: 3vw;
+        padding-left: 20vw;
+    }
+
+    @include mobile {
+        padding-left: 170px;
+        padding-right: 3vw;
+    }
+
+    @include themify($themes) {
+        background-color: themed("bgSoft");
+
+        .images {
+            width: 100%;
+            height: 300px;
+            position: relative;
+
+            .cover {
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
+            }
+
+            .updateCoverBtn {
+                position: absolute;
+                right: 0.9rem;
+                bottom: 0.8rem;
+                color: whitesmoke;
+                background-color: #7b7d85;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+
+            .profilePic {
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                width: 13rem;
+                height: 13rem;
+                border-radius: 50%;
+                object-fit: cover;
+                position: absolute;
+                left: 5vw;
+                margin: auto;
+                top: 200px;
+            }
+
+            .updatePFPBtn {
+                position: absolute;
+                top: calc(200px + 10rem);
+                left: 5vw;
+                color: whitesmoke;
+                background-color: #7b7d85;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+        }
+        .profileContainer {
+            padding: 20px;
+
+            @include mobile {
+                padding: 10px;
+            }
+
+            @include tablet {
+                padding: 20px;
+            }
+
+            .uInfo {
+                height: 180px;
+                -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+                -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+                box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+                border-radius: 20px;
+                background-color: themed("bg");
+                color: themed("textColor");
+                padding: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+                gap: 1rem;
+
+                @include mobile {
+                    flex-direction: column;
+                    height: 30svh;
+                    padding: 20px;
+                    margin-top: 100px;
+                }
+
+                .saveImg {
+                    position: absolute;
+                    top: 46svh;
+                    right: 50svw;
+                    color: whitesmoke;
+                    background-color: #7b7d85;
+                    padding: 10px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    display: none;
+                }
+
+                .left {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        font-size: 30px;
+                        font-weight: 600;
+                        width: 90%;
+                        text-align: center;
+                    }
+                }
+
+                .center {
+                    flex: 1;
+                    display: flex;
+                    align-items: flex-start;
+
+                    @include tablet {
+                        flex-wrap: wrap;
+                    }
+
+                    span {
+                        font-size: 30px;
+                        font-weight: 500;
+                    }
+
+                    .bio {
+                        p {
+                            font-size: 1rem;
+                            font-weight: 400;
+                            color: themed("textColorSoft");
+                        }
+                    }
+                }
+
+                .right {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    gap: 10px;
+
+                    .follow__btn {
+                        border: none;
+                        background-color: #5271ff;
+                        color: white;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 1rem;
+                        font-weight: 500;
+                    }
+
+                    .unfollow__btn {
+                        border: none;
+                        background-color: #ff5271;
+                        color: white;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 1rem;
+                        font-weight: 500;
+                    }
+
+                    .updateInfo {
+                        border: none;
+                        background-color: #5271ff;
+                        color: white;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 1rem;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}

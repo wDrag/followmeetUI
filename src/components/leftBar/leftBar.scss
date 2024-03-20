@@ -1,0 +1,73 @@
+@import "../../themes.scss";
+.leftBar {
+    @include themify($themes) {
+        position: fixed;
+        top: 7svh;
+        height: 93svh;
+        width: 15vw;
+        min-width: 150px;
+        overflow-y: scroll;
+        background-color: themed(bg);
+        color: themed(textColor);
+        padding-top: 2svh;
+        align-self: flex-start;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .container {
+            padding: 20px;
+
+            hr {
+                margin: 20px 0;
+                border: none;
+                height: 0.5px;
+                background-color: themed(border);
+            }
+
+            .menu {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                span {
+                    font-size: 12px;
+                }
+
+                .user {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        min-width: 40px;
+                        min-height: 40px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+
+                    span {
+                        font-size: 14px;
+                    }
+                }
+
+                .item {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    img {
+                        width: 30px;
+                    }
+
+                    span {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

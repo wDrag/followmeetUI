@@ -1,0 +1,114 @@
+@import "../../themes.scss";
+
+.RightBar {
+    @include themify($themes) {
+        position: fixed;
+        top: 7svh;
+        right: 0;
+        height: 90svh;
+        width: 25vw;
+        overflow: scroll;
+        background-color: themed(bgSoft);
+        color: themed(textColorSoft);
+        padding-top: 20px;
+        padding-right: 10px;
+
+        @include tablet {
+            display: none;
+        }
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .container {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            .item {
+                padding: 20px;
+                border-radius: 10px;
+                background-color: themed(bg);
+
+                p {
+                    color: themed(textColorSoft);
+                }
+
+                span {
+                    color: themed(textColorSoft);
+                    font-weight: 600;
+                }
+
+                .status_info {
+                    color: themed(textColorSoft2);
+                    font-size: small;
+                    font-weight: 500;
+                }
+
+                .user {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: 20px 0px 10px 0px;
+
+                    .status {
+                        font-size: smaller;
+                    }
+
+                    .userInfo {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        margin-right: 0.4rem;
+                        cursor: pointer;
+
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
+
+                        .online {
+                            width: 12px;
+                            height: 12px;
+                            border-radius: 50%;
+                            background-color: lime;
+                        }
+
+                        p {
+                            width: 10rem;
+                        }
+                    }
+
+                    .buttons {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.7rem;
+
+                        button {
+                            @include mediumScreen {
+                                display: none;
+                            }
+                            border: none;
+                            border-radius: 0.5rem;
+                            padding: 0.5rem;
+                            color: white;
+                            cursor: pointer;
+
+                            &:first-child {
+                                background-color: #5271ff;
+                            }
+
+                            &:last-child {
+                                background-color: #f0544f;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,97 @@
+@import "../../themes.scss";
+
+.NavBar {
+    @include themify($themes) {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        top: 0;
+        width: 100%;
+        height: 7svh;
+        background-color: themed(bg);
+        color: themed(textColor);
+        z-index: 1000;
+        flex-direction: row;
+
+        .navLeft {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            .logo {
+                font-weight: bold;
+                font-size: 30px;
+                color: darkblue;
+                width: 7svh;
+                height: 7svh;
+                cursor: pointer;
+            }
+
+            span {
+                font-weight: bold;
+                font-size: 20px;
+                color: darkblue;
+            }
+
+            .search {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                border: 1px solid lightgray;
+                border-radius: 7px;
+                padding: 5px;
+
+                @include tablet {
+                    display: none;
+                }
+
+                input {
+                    border: none;
+                    outline: none;
+                    width: 25rem;
+                    background-color: transparent;
+                    color: themed(textColor);
+                }
+            }
+
+            .NavButton {
+                cursor: pointer;
+
+                &:hover {
+                    color: themed(highlight);
+                }
+            }
+        }
+
+        .navRight {
+            display: flex;
+            align-items: center;
+            position: fixed;
+            right: 2rem;
+            gap: 0.5rem;
+
+            .user {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 500;
+
+                img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+
+            .NavButton {
+                cursor: pointer;
+
+                &:hover {
+                    color: themed(highlight);
+                }
+            }
+        }
+    }
+}

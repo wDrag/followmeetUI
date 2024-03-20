@@ -1,0 +1,135 @@
+@import "../../themes.scss";
+
+.login {
+    height: 100svh;
+    background-color: rgb(193, 190, 255);
+    display: flex;
+
+    .card {
+        width: 60vw;
+        height: 80svh;
+        display: flex;
+        background-color: white;
+        border-radius: 10px;
+        margin-left: 20vw;
+        margin-top: 10svh;
+        overflow: hidden;
+
+        .left {
+            flex: 5;
+            background:
+                linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)),
+                url("https://images.unsplash.com/photo-1508904635850-d986b19765d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"),
+                no-repeat center center;
+            background-size: cover;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 30px;
+            color: white;
+            min-width: 20vw;
+
+            h1 {
+                font-size: 6vw;
+                line-height: 10svh;
+                font-weight: bold;
+                color: yellowgreen;
+            }
+
+            span {
+                font-size: 14px;
+                color: lightgrey;
+            }
+
+            button {
+                width: 50%;
+                height: 3rem;
+                min-height: 2rem;
+                min-width: 8rem;
+                padding: 10px;
+                border: none;
+                background-color: white;
+                color: rebeccapurple;
+                font-weight: bold;
+                font-size: 1.2rem;
+                border-radius: 7px;
+                cursor: pointer;
+                &:hover {
+                    background-color: rebeccapurple;
+                    color: white;
+                }
+            }
+        }
+
+        .right {
+            flex: 5;
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1.5rem;
+            @include mediumScreen {
+                padding: 20px;
+            }
+
+            h1 {
+                color: #555;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+
+                input {
+                    border: none;
+                    border-bottom: 1px solid lightgray;
+                    padding: 20px 10px;
+                }
+
+                ::-ms-reveal {
+                    display: none;
+                }
+
+                :focus {
+                    outline: none;
+                }
+
+                .password {
+                    display: flex;
+                    flex-direction: row;
+                    border-bottom: 1px solid lightgray;
+                    align-items: center;
+
+                    input {
+                        width: 100%;
+                        border: none;
+                    }
+
+                    .showPassword {
+                        display: block;
+                        cursor: pointer;
+                    }
+                }
+
+                button {
+                    width: 50%;
+                    min-width: 8rem;
+                    height: 3rem;
+                    padding: 10px;
+                    border: none;
+                    background-color: #938eef;
+                    color: white;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                    border-radius: 7px;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: #7d7ae3;
+                    }
+                }
+            }
+        }
+    }
+}
