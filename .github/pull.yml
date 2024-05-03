@@ -1,0 +1,5 @@
+version: "1"
+rules:
+  - base: main
+    upstream: improved-follow-meet:main    
+    mergeMethod: hardreset
