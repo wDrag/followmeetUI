@@ -143,7 +143,7 @@ export const Post = ({ post }) => {
     } catch (err) {
       const info = {
         name: "Negative",
-        message: "You are not allowed to delete this post",
+        message: err.response.data,
         showButton: false,
       };
       showAlert(info);
