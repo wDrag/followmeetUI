@@ -80,18 +80,17 @@ const Profile = () => {
     fetchIsFollowed();
   }, [profileOwner]);
 
-  // Increase pageNumber when user scrolls to the bottom
-  window.onscroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop >=
-      document.documentElement.offsetHeight
-    ) {
+  const handleScroll = () => {
+    if (Math.round(window.scrollY + window.innerHeight) >= Math.round(document.body.scrollHeight)) {
       pageNumber.current++;
-      // Console log to see if it works
-      console.log(pageNumber.current);
       fetchUserPosts();
     }
   };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Get data then add, do not reload
   const fetchUserPosts = async () => {
