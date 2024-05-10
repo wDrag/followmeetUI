@@ -366,7 +366,7 @@ const Profile = () => {
                   Save
                 </div>
               </div>
-              <Posts posts={userPosts} infiniteScroll={false} />
+              <Posts posts={userPosts} infiniteScroll={true} />
             </div>
           </>
         </div>
