@@ -46,6 +46,7 @@ const Posts = ({ posts, infiniteScroll }) => {
   }, []);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setDisplayPosts([]);
     setPostCounter(0);
     setPage(1);
