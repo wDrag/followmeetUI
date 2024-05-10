@@ -32,6 +32,7 @@ const Profile = () => {
   const [isActionDone, setIsActionDone] = useState(true);
 
   const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
+  const pageNumber = useRef(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,13 +80,30 @@ const Profile = () => {
     fetchIsFollowed();
   }, [profileOwner]);
 
+  const handleScroll = () => {
+    if (Math.round(window.scrollY + window.innerHeight) >= Math.round(document.body.scrollHeight)) {
+      pageNumber.current++;
+      fetchUserPosts();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Get data then add, do not reload
   const fetchUserPosts = async () => {
     const id = await fetchIdOfProfileOwner(username);
+
     try {
       const res = await axios.get(
-        `${API_ENDPOINT}/api/post/getPostsOfUser?userId=${id}`
+        `${API_ENDPOINT}/api/post/getPostsOfUser?userId=${id}&page=${pageNumber.current}`
       );
-      setUserPosts(res.data);
+      if (pageNumber.current === 1)
+        setUserPosts(res.data);
+      else
+        setUserPosts((prev) => [...prev, ...res.data]);
     } catch (err) {
       console.log(err);
     }
