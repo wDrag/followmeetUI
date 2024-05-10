@@ -108,21 +108,6 @@ export const Post = ({ post }) => {
     fetchPostOwner();
   }, []);
 
-  useEffect(() => {
-    const fetchDetails = async () => {
-      await fetchReacts();
-      await fetchNumComments();
-    };
-
-    fetchDetails();
-
-    // Then fetch comments every 5 seconds
-    const intervalId = setInterval(fetchDetails, 5000);
-
-    // Clear the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []);
-
   const handleDelete = async () => {
     try {
       await axios.post(`${API_ENDPOINT}/api/post/deletePost`, {
@@ -143,7 +128,7 @@ export const Post = ({ post }) => {
     } catch (err) {
       const info = {
         name: "Negative",
-        message: "You are not allowed to delete this post",
+        message: err.response.data,
         showButton: false,
       };
       showAlert(info);
