@@ -14,23 +14,6 @@ export const AuthContextProvider = ({ children }) => {
   const login = async (inputs) => {
     // console.log(API_ENDPOINT);
     try {
-      const pseudoUser = {
-        username: "admin",
-        password: "admin",
-        fullName: "Admin",
-        profilePicture:
-          "https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg",
-        coverPicture:
-          "https://cdna.artstation.com/p/assets/images/images/020/174/718/large/amarth-chen-9.jpg?1566698233",
-        id: 1,
-      };
-
-      if (inputs.username === pseudoUser.username) {
-        if (inputs.password === pseudoUser.password) {
-          setCurrentUser(pseudoUser);
-          return;
-        }
-      }
       const tmpInputs = { ...inputs };
       const res = await ax.post(`${API_ENDPOINT}/api/auth/login`, tmpInputs);
       //add lastLogin later
