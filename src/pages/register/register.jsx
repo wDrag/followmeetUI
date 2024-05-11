@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import "./register.scss";
-import axios from "axios";
+import ax from "../../../axios.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { AlertContext } from "../../context/alertContext";
@@ -36,7 +36,7 @@ const Register = () => {
     try {
       const tmpInputs = { ...inputs };
       // console.log(tmpInputs);
-      const res = await axios.post(
+      const res = await ax.post(
         API_ENDPOINT + "/api/auth/register",
         tmpInputs
       );

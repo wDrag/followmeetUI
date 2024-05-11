@@ -8,7 +8,7 @@ import Comments from "../comments/comments";
 import { useContext, useEffect, useState } from "react";
 import "./post.scss";
 import { AuthContext } from "../../context/authContext";
-import axios from "axios";
+import ax from "../../../axios";
 import { getTime } from "../../utils/getTime";
 import { AlertContext } from "../../context/alertContext";
 
@@ -26,7 +26,7 @@ export const Post = ({ post }) => {
 
   const fetchNumComments = async () => {
     try {
-      const res = await axios.get(
+      const res = await ax.get(
         `${API_ENDPOINT}/api/comment/getNumComments?postId=${post.id}`
       );
       setNumComments(res.data);
@@ -41,7 +41,7 @@ export const Post = ({ post }) => {
 
   const fetchReacted = async () => {
     try {
-      const res = await axios.get(
+      const res = await ax.get(
         `${API_ENDPOINT}/api/react/isReacted?userId=${currentUser.id}&postId=${post.id}`
       );
       setReacted(res.data);
@@ -52,7 +52,7 @@ export const Post = ({ post }) => {
 
   const fetchReacts = async () => {
     try {
-      const res = await axios.get(
+      const res = await ax.get(
         `${API_ENDPOINT}/api/react/getReacts?postId=${post.id}`
       );
       setReacts(res.data);
@@ -64,12 +64,12 @@ export const Post = ({ post }) => {
   const handleReact = async () => {
     try {
       if (reacted) {
-        await axios.post(`${API_ENDPOINT}/api/react/unreactPost`, {
+        await ax.post(`${API_ENDPOINT}/api/react/unreactPost`, {
           postId: post.id,
           userId: currentUser.id,
         });
       } else {
-        await axios.post(`${API_ENDPOINT}/api/react/reactPost`, {
+        await ax.post(`${API_ENDPOINT}/api/react/reactPost`, {
           postId: post.id,
           userId: currentUser.id,
         });
@@ -97,7 +97,7 @@ export const Post = ({ post }) => {
   useEffect(() => {
     const fetchPostOwner = async () => {
       try {
-        const res = await axios.get(
+        const res = await ax.get(
           `${API_ENDPOINT}/api/user/getUserInfos?userId=${post.ownerId}`
         );
         setPostOwner(res.data);
@@ -110,7 +110,7 @@ export const Post = ({ post }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.post(`${API_ENDPOINT}/api/post/deletePost`, {
+      await ax.post(`${API_ENDPOINT}/api/post/deletePost`, {
         postId: post.id,
         userId: currentUser.id,
       });

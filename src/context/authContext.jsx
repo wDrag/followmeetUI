@@ -1,4 +1,4 @@
-import axios from "axios";
+import ax from "../../axios";
 import { createContext, useEffect, useState } from "react";
 import PopoutUpdateInfo from "../components/popoutUpdateInfo/popoutUpdateInfo";
 
@@ -32,11 +32,11 @@ export const AuthContextProvider = ({ children }) => {
         }
       }
       const tmpInputs = { ...inputs };
-      const res = await axios.post(`${API_ENDPOINT}/api/auth/login`, tmpInputs);
+      const res = await ax.post(`${API_ENDPOINT}/api/auth/login`, tmpInputs);
       //add lastLogin later
       // console.log(res);
       if (res.status === 200) {
-        const user = await axios.get(
+        const user = await ax.get(
           `${API_ENDPOINT}/api/user/getUserInfos?userId=${res.data}`
         );
         setCurrentUser(user.data);
@@ -56,7 +56,7 @@ export const AuthContextProvider = ({ children }) => {
   const logout = () => {
     setCurrentUser(null);
     localStorage.removeItem("user");
-    axios.post(`${API_ENDPOINT}/api/auth/logout`, { userId: currentUser.id });
+    ax.post(`${API_ENDPOINT}/api/auth/logout`, { userId: currentUser.id });
   };
 
   useEffect(() => {

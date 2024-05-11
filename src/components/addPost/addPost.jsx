@@ -6,7 +6,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
+import ax from "../../../axios.js";
 import cloudinary from "../../cloudinary/cloudinary";
 import { AlertContext } from "../../context/alertContext";
 
@@ -90,7 +90,7 @@ const AddPost = () => {
       if (newPost.contentText === "" && newPost.contentImg === "") {
         throw new Error("Post cannot be empty");
       }
-      await axios.post(API_ENDPOINT + "/api/post/addPost", newPost);
+      await ax.post(API_ENDPOINT + "/api/post/addPost", newPost);
       hideAlert();
       const info = {
         name: "Positive",

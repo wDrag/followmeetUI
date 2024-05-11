@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/authContext";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import "./comments.scss";
 import { useNavigate } from "react-router";
-import axios from "axios";
+import ax from "../../../axios";
 import { getTime } from "../../utils/getTime";
 import { AlertContext } from "../../context/alertContext";
 
@@ -19,7 +19,7 @@ const Comments = ({ postId, onAddComment }) => {
 
   const fetchComments = async () => {
     try {
-      const res = await axios.get(
+      const res = await ax.get(
         `${API_ENDPOINT}/api/comment/getComments?postId=${postId}`
       );
       const commentsWithOwnerInfo = await Promise.all(
@@ -39,7 +39,7 @@ const Comments = ({ postId, onAddComment }) => {
 
   const fetchCommentOwnerInfos = async (userId) => {
     try {
-      const res = await axios.get(
+      const res = await ax.get(
         `${API_ENDPOINT}/api/user/getUserInfos?userId=${userId}`
       );
       return res.data;
@@ -62,7 +62,7 @@ const Comments = ({ postId, onAddComment }) => {
     try {
       const contentText = document.querySelector(".write input").value;
       if (contentText == "") return;
-      await axios.post(`${API_ENDPOINT}/api/comment/addComment`, {
+      await ax.post(`${API_ENDPOINT}/api/comment/addComment`, {
         userId,
         postId,
         contentText,
@@ -82,7 +82,7 @@ const Comments = ({ postId, onAddComment }) => {
 
   const handleDelete = async (commentId) => {
     try {
-      await axios.post(`${API_ENDPOINT}/api/comment/deleteComment`, {
+      await ax.post(`${API_ENDPOINT}/api/comment/deleteComment`, {
         commentId: commentId,
         userId: currentUser.id,
       });

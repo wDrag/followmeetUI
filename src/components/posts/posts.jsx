@@ -1,8 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import "../../components/posts/posts.scss";
 import { Post } from "../post/post";
-import axios from "axios";
-import { AuthContext } from "../../context/authContext";
 
 const Posts = ({ posts, infiniteScroll }) => {
   const [page, setPage] = useState(1);

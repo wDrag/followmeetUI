@@ -3,7 +3,7 @@ import { UpdateInfoContext } from "../../context/updateInfoContext";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
+import ax from "../../../axios";
 import { useNavigate } from "react-router-dom";
 import { AlertContext } from "../../context/alertContext";
 import { AuthContext } from "../../context/authContext";
@@ -35,14 +35,14 @@ const PopoutUpdateInfo = ({}) => {
     if (!Biography) delete data.bio;
     if (!email) delete data.email;
     try {
-      await axios.post(`${API_ENDPOINT}/api/user/updateInfo`, data);
+      await ax.post(`${API_ENDPOINT}/api/user/updateInfo`, data);
     } catch (err) {
       messageFailed = err.response.data;
     }
     hidePopout();
 
     try {
-      const res = await axios.get(
+      const res = await ax.get(
         `${API_ENDPOINT}/api/user/getUserInfos?userId=${currentUser.id}`
       );
       setCurrentUser(res.data);
