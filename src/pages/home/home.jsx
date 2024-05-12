@@ -2,7 +2,7 @@ import Posts from "../../components/posts/posts";
 import AddPost from "../../components/addPost/addPost";
 import "./home.scss";
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import ax from "../../../axios";
 import { AuthContext } from "../../context/authContext";
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get(
+        const res = await ax.get(
           `${API_ENDPOINT}/api/post/getPosts?userId=${currentUser.id}`
         );
         setPosts(res.data);

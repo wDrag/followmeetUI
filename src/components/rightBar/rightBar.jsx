@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import "./rightBar.scss";
 import { AuthContext } from "../../context/authContext";
-import axios from "axios";
+import ax from "../../../axios";
 import { getTime } from "../../utils/getTime";
 
 const RightBar = () => {
@@ -15,7 +15,7 @@ const RightBar = () => {
 
   const fetchSuggestions = async () => {
     try {
-      const res = await axios.get(
+      const res = await ax.get(
         `${API_ENDPOINT}/api/user/suggestUser?userId=${currentUser.id}`
       );
       setSuggestions(res.data);
@@ -25,7 +25,7 @@ const RightBar = () => {
   };
   const fetchFollowings = async () => {
     try {
-      const res = await axios.get(
+      const res = await ax.get(
         `${API_ENDPOINT}/api/follow/getOnlineFollowings?userId=${currentUser.id}`
       );
       setFollowings(res.data);
@@ -35,12 +35,12 @@ const RightBar = () => {
   };
   const fetchActivities = async () => {
     try {
-      const res = await axios.get(
+      const res = await ax.get(
         `${API_ENDPOINT}/api/activities/getLatestActivities?userId=${currentUser.id}`
       );
       const acts = res.data;
       for (const element of acts) {
-        element.owner = await axios.get(
+        element.owner = await ax.get(
           `${API_ENDPOINT}/api/user/getUserInfos?userId=${element.ownerId}`
         );
         element.owner = element.owner.data;
@@ -69,7 +69,7 @@ const RightBar = () => {
 
   const handleFollow = async (e, suggestionId) => {
     try {
-      await axios.post(`${API_ENDPOINT}/api/follow/followUser`, {
+      await ax.post(`${API_ENDPOINT}/api/follow/followUser`, {
         userId: currentUser.id,
         followingId: suggestionId,
       });
