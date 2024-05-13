@@ -16,7 +16,7 @@ const Home = () => {
     const fetchPosts = async () => {
       try {
         const res = await ax.get(
-          `${API_ENDPOINT}/api/post/getPosts?userId=${currentUser.id}`
+          `${API_ENDPOINT}/api/post/getPosts`
         );
         setPosts(res.data);
       } catch (err) {
