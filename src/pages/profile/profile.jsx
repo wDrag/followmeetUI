@@ -33,6 +33,8 @@ const Profile = () => {
 
   const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 
+  const isOwner = currentUser?.username === username;
+
   useEffect(() => {
     const fetchData = async () => {
       const id = await fetchIdOfProfileOwner(username);
@@ -311,9 +313,9 @@ const Profile = () => {
                   setCover(e.target.files[0]);
                 }}
               />
-              <label htmlFor="coverInput">
+              {isOwner && <label htmlFor="coverInput">
                 <FontAwesomeIcon className="updateCoverBtn" icon={faCamera} />
-              </label>
+              </label>}
 
               <img
                 src={
@@ -333,9 +335,9 @@ const Profile = () => {
                   setPFP(e.target.files[0]);
                 }}
               />
-              <label htmlFor="pfpInput">
+              {isOwner && <label htmlFor="pfpInput">
                 <FontAwesomeIcon icon={faCamera} className="updatePFPBtn" />
-              </label>
+              </label>}
 
               {cover !== null || PFP !== null ? (showSaveImg(), null) : null}
             </div>
