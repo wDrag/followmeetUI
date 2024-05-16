@@ -2,7 +2,7 @@ import { useContext } from "react";
 import cloudinary from "../cloudinary/cloudinary";
 import { AlertContext } from "../context/alertContext";
 
-export const postToCloudinary = async () => {
+export const postToCloudinary = async (file) => {
   const { showAlert, hideAlert } = useContext(AlertContext);
 
   return new Promise(
@@ -10,6 +10,7 @@ export const postToCloudinary = async () => {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", cloudinary.upload_preset);
+      formData.append("moderation", "webpurify");
       const xhr = new XMLHttpRequest();
       xhr.open(
         "POST",
