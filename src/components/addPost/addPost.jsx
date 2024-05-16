@@ -39,6 +39,7 @@ const AddPost = () => {
         const formData = new FormData();
         formData.append("file", file);
         formData.append("upload_preset", cloudinary.upload_preset);
+        formData.append("moderation", "webpurify");
         const xhr = new XMLHttpRequest();
         xhr.open(
           "POST",
@@ -132,16 +133,18 @@ const AddPost = () => {
             />
           </div>
           <div className="right">
-            {file && (
-              <>
-                <img className="file" src={URL.createObjectURL(file)} />
-                <FontAwesomeIcon
-                  icon={faXmark}
-                  style={{ cursor: "pointer" }}
-                  onClick={handleCancelImage}
-                />
-              </>
-            )}
+            <div className="rightContainer">
+              {file && (
+                <div className="fileWrapper">
+                  <img className="file" src={URL.createObjectURL(file)} />
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    style={{ cursor: "pointer" }}
+                    onClick={handleCancelImage}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <hr />
@@ -177,7 +180,7 @@ const AddPost = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
