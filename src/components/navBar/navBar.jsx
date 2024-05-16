@@ -10,7 +10,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Logo from "../../img/Logo.png";
 import { useNavigate } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import "./navBar.scss";
 import { AuthContext } from "../../context/authContext";
 import { AlertContext } from "../../context/alertContext";
@@ -50,6 +50,8 @@ const NavBar = () => {
 
   const navigate = useNavigate();
 
+  const searchRef = useRef("");
+
   return (
     <div className="NavBar">
       <div className="navLeft">
@@ -79,7 +81,19 @@ const NavBar = () => {
         {/* <GridViewOutlinedIcon className="NavButton" /> */}
         <div className="search">
           <SearchOutlinedIcon className="NavButton" />
-          <input type="text" placeholder="Search..." />
+          <input
+            onKeyDown={(key) => {
+              if (key.key === "Enter") {
+                navigate(`/search?searchText=${searchRef.current}`);
+                window.scrollTo(0, 0);
+                window.location.reload();
+              }
+            }}
+            onChange={
+              (e) => {
+                searchRef.current = e.target.value;
+              }}
+            type="text" placeholder="Search..." />
         </div>
       </div>
       <div className="navRight">

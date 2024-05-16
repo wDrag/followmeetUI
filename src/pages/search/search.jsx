@@ -2,42 +2,35 @@ import Posts from "../../components/posts/posts";
 import "./search.scss";
 import { useContext, useEffect, useState } from "react";
 import ax from "../../../axios";
+import { useSearchParams } from "react-router-dom";
 
 const Search = () => {
   const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 
   const [posts, setPosts] = useState([]);
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    const searchQuery = e.target.elements.search.value;
-    try {
-      const res = await ax.get(
-        `${API_ENDPOINT}/api/search?query=${searchQuery}`
-      );
-      setPosts(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const [searchParams] = useSearchParams();
 
-  const handleEnter = (e) => {
-    if (e.key === "Enter") {
-      handleSearch(e);
-    }
-  };
+  const searchText = searchParams.get("searchText");
+
+  console.log(searchText);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const res = await ax.get(
+          `${API_ENDPOINT}/api/search?query=${searchText}`
+        );
+        setPosts(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchPost();
+  }, []);
 
   return (
     <div className="search">
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          name="search"
-          placeholder="Search"
-          onKeyDown={handleEnter}
-        />
-        <button type="submit">Search</button>
-      </form>
       <Posts posts={posts} />
     </div>
   );
