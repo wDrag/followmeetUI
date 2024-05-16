@@ -4,9 +4,6 @@
     padding-left: 16vw;
     padding-right: 26vw;
     margin-top: 4svh;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
 
     @include tablet {
         padding-right: 3vw;

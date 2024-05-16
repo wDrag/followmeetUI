@@ -18,6 +18,7 @@ import { DarkModeContext } from "./context/darkModeContext.jsx";
 import { AuthContext } from "./context/authContext.jsx";
 import Page404 from "./pages/page404/page404.jsx";
 import Cookies from "./pages/cookies/cookies.jsx";
+import Search from "./pages/search/search.jsx";
 import { UpdateInfoContext } from "./context/updateInfoContext.jsx";
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -88,6 +89,10 @@ const App = () => {
         {
           path: "/profile",
           element: <Profile />,
+        },
+        {
+          path: "/search",
+          element: <Search />
         }
       ],
     },
@@ -118,7 +123,8 @@ const App = () => {
           element: <Cookies />,
         },
       ],
-    }
+    },
+    
   ]);
 
   return (
