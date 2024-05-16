@@ -153,6 +153,7 @@ const Profile = () => {
         const formData = new FormData();
         formData.append("file", file);
         formData.append("upload_preset", cloudinary.upload_preset);
+        formData.append("moderation", "webpurify");
         const xhr = new XMLHttpRequest();
         xhr.open(
           "POST",
