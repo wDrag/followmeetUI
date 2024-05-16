@@ -5,7 +5,7 @@ import Posts from "../../components/posts/posts";
 import { useNavigate, useParams, useLocation } from "react-router";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/authContext";
-import axios from "axios";
+import ax from "../../../axios.js";
 import { UpdateInfoContext } from "../../context/updateInfoContext";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,13 +33,11 @@ const Profile = () => {
 
   const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 
-  const isOwner = currentUser?.username === username;
-
   useEffect(() => {
     const fetchData = async () => {
       const id = await fetchIdOfProfileOwner(username);
       try {
-        const res = await axios.get(
+        const res = await ax.get(
           `${API_ENDPOINT}/api/user/getUserInfos?userId=${id}`
         );
         setProfileOwner(res.data);
@@ -56,7 +54,7 @@ const Profile = () => {
     let id = new URLSearchParams(location.search).get("id");
     if (id) return id;
     try {
-      const res = await axios.get(
+      const res = await ax.get(
         `${API_ENDPOINT}/api/user/getUserIdByUsername?username=${username}`
       );
       return res.data;
@@ -68,7 +66,7 @@ const Profile = () => {
   const fetchIsFollowed = async () => {
     const id = await fetchIdOfProfileOwner(username);
     try {
-      const res = await axios.get(
+      const res = await ax.get(
         `${API_ENDPOINT}/api/follow/isFollowed?userId=${currentUser.id}&followingId=${id}`
       );
       setIsFollowed(res.data);
@@ -84,7 +82,7 @@ const Profile = () => {
   const fetchUserPosts = async () => {
     const id = await fetchIdOfProfileOwner(username);
     try {
-      const res = await axios.get(
+      const res = await ax.get(
         `${API_ENDPOINT}/api/post/getPostsOfUser?userId=${id}`
       );
       setUserPosts(res.data);
@@ -107,7 +105,7 @@ const Profile = () => {
     const id = await fetchIdOfProfileOwner(username);
     if (isFollowed) {
       try {
-        await axios.post(`${API_ENDPOINT}/api/follow/unfollowUser`, {
+        await ax.post(`${API_ENDPOINT}/api/follow/unfollowUser`, {
           userId: currentUser.id,
           followingId: id,
         });
@@ -117,7 +115,7 @@ const Profile = () => {
       }
     } else {
       try {
-        await axios.post(`${API_ENDPOINT}/api/follow/followUser`, {
+        await ax.post(`${API_ENDPOINT}/api/follow/followUser`, {
           userId: currentUser.id,
           followingId: id,
         });
@@ -155,7 +153,6 @@ const Profile = () => {
         const formData = new FormData();
         formData.append("file", file);
         formData.append("upload_preset", cloudinary.upload_preset);
-        formData.append("moderation", "webpurify");
         const xhr = new XMLHttpRequest();
         xhr.open(
           "POST",
@@ -202,11 +199,11 @@ const Profile = () => {
       const coverUrl = await postToCloudinary(cover);
       const PFPUrl = await postToCloudinary(PFP);
       try {
-        await axios.post(`${API_ENDPOINT}/api/user/updateCover`, {
+        await ax.post(`${API_ENDPOINT}/api/user/updateCover`, {
           userId: currentUser.id,
           coverPicture: coverUrl,
         });
-        await axios.post(`${API_ENDPOINT}/api/user/updatePFP`, {
+        await ax.post(`${API_ENDPOINT}/api/user/updatePFP`, {
           userId: currentUser.id,
           PFP: PFPUrl,
         });
@@ -235,7 +232,7 @@ const Profile = () => {
     if (cover) {
       const coverUrl = await postToCloudinary(cover);
       try {
-        await axios.post(`${API_ENDPOINT}/api/user/updateCover`, {
+        await ax.post(`${API_ENDPOINT}/api/user/updateCover`, {
           userId: currentUser.id,
           coverPicture: coverUrl,
         });
@@ -263,7 +260,7 @@ const Profile = () => {
     if (PFP) {
       const PFPUrl = await postToCloudinary(PFP);
       try {
-        await axios.post(`${API_ENDPOINT}/api/user/updatePFP`, {
+        await ax.post(`${API_ENDPOINT}/api/user/updatePFP`, {
           userId: currentUser.id,
           PFP: PFPUrl,
         });
@@ -313,9 +310,9 @@ const Profile = () => {
                   setCover(e.target.files[0]);
                 }}
               />
-              {isOwner && <label htmlFor="coverInput">
+              <label htmlFor="coverInput">
                 <FontAwesomeIcon className="updateCoverBtn" icon={faCamera} />
-              </label>}
+              </label>
 
               <img
                 src={
@@ -335,9 +332,9 @@ const Profile = () => {
                   setPFP(e.target.files[0]);
                 }}
               />
-              {isOwner && <label htmlFor="pfpInput">
+              <label htmlFor="pfpInput">
                 <FontAwesomeIcon icon={faCamera} className="updatePFPBtn" />
-              </label>}
+              </label>
 
               {cover !== null || PFP !== null ? (showSaveImg(), null) : null}
             </div>
