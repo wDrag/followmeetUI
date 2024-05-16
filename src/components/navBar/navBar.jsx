@@ -41,6 +41,13 @@ const NavBar = () => {
     showAlert(info);
   };
 
+  const handleSearch = () => {
+    const search = document.querySelector(".search input");
+    search.classList.toggle("active");
+    search.focus();
+    console.log(search.classList.contains("active"));
+  };
+
   const navigate = useNavigate();
 
   return (
