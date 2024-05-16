@@ -2,7 +2,7 @@ import { useContext } from "react";
 import cloudinary from "../cloudinary/cloudinary";
 import { AlertContext } from "../context/alertContext";
 
-export const postToCloudinary = async () => {
+export const postToCloudinary = async (file) => {
   const { showAlert, hideAlert } = useContext(AlertContext);
 
   return new Promise(

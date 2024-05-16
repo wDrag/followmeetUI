@@ -132,16 +132,18 @@ const AddPost = () => {
             />
           </div>
           <div className="right">
-            {file && (
-              <>
-                <img className="file" src={URL.createObjectURL(file)} />
-                <FontAwesomeIcon
-                  icon={faXmark}
-                  style={{ cursor: "pointer" }}
-                  onClick={handleCancelImage}
-                />
-              </>
-            )}
+            <div className="rightContainer">
+              {file && (
+                <div className="fileWrapper">
+                  <img className="file" src={URL.createObjectURL(file)} />
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    style={{ cursor: "pointer" }}
+                    onClick={handleCancelImage}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <hr />
@@ -177,7 +179,7 @@ const AddPost = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

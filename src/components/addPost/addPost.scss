@@ -9,6 +9,10 @@
         background-color: themed("bg");
         color: themed("textColor");
         margin-bottom: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        min-width: 750px;
 
         .container {
             padding: 20px;
@@ -33,7 +37,7 @@
                         outline: none;
                         padding: 20px 10px;
                         background-color: transparent;
-                        width: 60%;
+                        width: 100%;
                         color: themed("textColor");
                     }
                 }
@@ -42,11 +46,22 @@
                     display: flex;
                     justify-content: flex-end;
                     gap: 10px;
-                    .file {
-                        width: 100px;
-                        height: 100px;
-                        object-fit: cover;
-                        border-radius: 5px;
+
+                    .rightContainer {
+                        width: 150px;
+
+                        .fileWrapper {
+                            display: flex;
+                            gap: 4px;
+                            justify-content: flex-end;
+
+                            .file {
+                                width: 100px;
+                                height: 100px;
+                                object-fit: cover;
+                                border-radius: 5px;
+                            }
+                        }
                     }
                 }
             }

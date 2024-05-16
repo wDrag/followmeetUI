@@ -5,7 +5,7 @@ import Posts from "../../components/posts/posts";
 import { useNavigate, useParams, useLocation } from "react-router";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/authContext";
-import ax from "../../../axios.js";
+import axios from "axios";
 import { UpdateInfoContext } from "../../context/updateInfoContext";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -37,7 +37,7 @@ const Profile = () => {
     const fetchData = async () => {
       const id = await fetchIdOfProfileOwner(username);
       try {
-        const res = await ax.get(
+        const res = await axios.get(
           `${API_ENDPOINT}/api/user/getUserInfos?userId=${id}`
         );
         setProfileOwner(res.data);
@@ -54,7 +54,7 @@ const Profile = () => {
     let id = new URLSearchParams(location.search).get("id");
     if (id) return id;
     try {
-      const res = await ax.get(
+      const res = await axios.get(
         `${API_ENDPOINT}/api/user/getUserIdByUsername?username=${username}`
       );
       return res.data;
@@ -66,7 +66,7 @@ const Profile = () => {
   const fetchIsFollowed = async () => {
     const id = await fetchIdOfProfileOwner(username);
     try {
-      const res = await ax.get(
+      const res = await axios.get(
         `${API_ENDPOINT}/api/follow/isFollowed?userId=${currentUser.id}&followingId=${id}`
       );
       setIsFollowed(res.data);
@@ -82,7 +82,7 @@ const Profile = () => {
   const fetchUserPosts = async () => {
     const id = await fetchIdOfProfileOwner(username);
     try {
-      const res = await ax.get(
+      const res = await axios.get(
         `${API_ENDPOINT}/api/post/getPostsOfUser?userId=${id}`
       );
       setUserPosts(res.data);
@@ -105,7 +105,7 @@ const Profile = () => {
     const id = await fetchIdOfProfileOwner(username);
     if (isFollowed) {
       try {
-        await ax.post(`${API_ENDPOINT}/api/follow/unfollowUser`, {
+        await axios.post(`${API_ENDPOINT}/api/follow/unfollowUser`, {
           userId: currentUser.id,
           followingId: id,
         });
@@ -115,7 +115,7 @@ const Profile = () => {
       }
     } else {
       try {
-        await ax.post(`${API_ENDPOINT}/api/follow/followUser`, {
+        await axios.post(`${API_ENDPOINT}/api/follow/followUser`, {
           userId: currentUser.id,
           followingId: id,
         });
@@ -199,11 +199,11 @@ const Profile = () => {
       const coverUrl = await postToCloudinary(cover);
       const PFPUrl = await postToCloudinary(PFP);
       try {
-        await ax.post(`${API_ENDPOINT}/api/user/updateCover`, {
+        await axios.post(`${API_ENDPOINT}/api/user/updateCover`, {
           userId: currentUser.id,
           coverPicture: coverUrl,
         });
-        await ax.post(`${API_ENDPOINT}/api/user/updatePFP`, {
+        await axios.post(`${API_ENDPOINT}/api/user/updatePFP`, {
           userId: currentUser.id,
           PFP: PFPUrl,
         });
@@ -232,7 +232,7 @@ const Profile = () => {
     if (cover) {
       const coverUrl = await postToCloudinary(cover);
       try {
-        await ax.post(`${API_ENDPOINT}/api/user/updateCover`, {
+        await axios.post(`${API_ENDPOINT}/api/user/updateCover`, {
           userId: currentUser.id,
           coverPicture: coverUrl,
         });
@@ -260,7 +260,7 @@ const Profile = () => {
     if (PFP) {
       const PFPUrl = await postToCloudinary(PFP);
       try {
-        await ax.post(`${API_ENDPOINT}/api/user/updatePFP`, {
+        await axios.post(`${API_ENDPOINT}/api/user/updatePFP`, {
           userId: currentUser.id,
           PFP: PFPUrl,
         });
