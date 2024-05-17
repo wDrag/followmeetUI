@@ -13,8 +13,6 @@ const Search = () => {
 
   const searchText = searchParams.get("searchText");
 
-  console.log(searchText);
-
   useEffect(() => {
     const fetchPost = async () => {
       try {
