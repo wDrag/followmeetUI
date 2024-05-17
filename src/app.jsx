@@ -21,6 +21,7 @@ import Cookies from "./pages/cookies/cookies.jsx";
 import Search from "./pages/search/search.jsx";
 import { UpdateInfoContext } from "./context/updateInfoContext.jsx";
 import { BrowserRouter as Router } from 'react-router-dom';
+import TrashCan from "./pages/trash_can/trash_can.jsx";
 
 const App = () => {
   const { currentUser } = useContext(AuthContext);
@@ -93,6 +94,10 @@ const App = () => {
         {
           path: "/search",
           element: <Search />
+        },
+        {
+          path: "/trashcan",
+          element: <TrashCan />
         }
       ],
     },
@@ -124,7 +129,7 @@ const App = () => {
         },
       ],
     },
-    
+
   ]);
 
   return (
