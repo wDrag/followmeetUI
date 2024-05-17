@@ -37,10 +37,12 @@
             .search {
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 gap: 10px;
                 border: 1px solid lightgray;
                 border-radius: 7px;
                 padding: 5px;
+                margin-top: 0 !important;
 
                 @include tablet {
                     display: none;
