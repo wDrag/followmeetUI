@@ -1,0 +1,28 @@
+@import "../../themes.scss";
+
+.trashCanContainer {
+    padding-left: 16vw;
+    padding-right: 26vw;
+    margin-top: 4svh;
+
+    @include tablet {
+        padding-right: 3vw;
+        padding-left: 20vw;
+    }
+
+    @include mobile {
+        padding-left: 170px;
+        padding-right: 3vw;
+    }
+
+    @include themify($themes) {
+        background-color: themed("bgSoft");
+
+        .trashCanTitle {
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            color: themed("textColor");
+        }
+    }
+}
