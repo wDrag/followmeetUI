@@ -61,8 +61,25 @@ const Posts = ({ posts, infiniteScroll }) => {
     }
   };
 
+
   return (
     <div className="posts">
+      {posts.length === 0 &&
+        <div className="post" style={{ display: "flex", paddingTop: "20px", paddingBottom: "20px", alignItems: "center", justifyContent: "center" }}>
+          <div style={{
+            display: "flex",
+            paddingTop: "20px", paddingBottom: "20px", flexDirection: "column", alignItems: "center", borderRadius: "50%", backgroundColor: "rgb(50, 50, 50)", width: "200px", height: "200px", padding: "10px", justifyContent: "center"
+          }}>
+            <img
+              src="/src/img/not-found.png"
+              alt=""
+              style={{ width: "100px", height: "100px" }}
+            />
+            <span>NO POST</span>
+          </div>
+        </div>
+
+      }
       {infiniteScroll &&
         displayPosts.map((post) => <Post post={post} key={post.id} />)}
       {!infiniteScroll &&
