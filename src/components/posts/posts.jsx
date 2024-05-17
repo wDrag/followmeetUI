@@ -71,7 +71,7 @@ const Posts = ({ posts, infiniteScroll }) => {
             paddingTop: "20px", paddingBottom: "20px", flexDirection: "column", alignItems: "center", borderRadius: "50%", backgroundColor: "rgb(50, 50, 50)", width: "200px", height: "200px", padding: "10px", justifyContent: "center"
           }}>
             <img
-              src="/src/img/not-found.png"
+              src="https://cdn-icons-png.flaticon.com/512/7466/7466140.png"
               alt=""
               style={{ width: "100px", height: "100px" }}
             />
