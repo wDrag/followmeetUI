@@ -1,6 +1,6 @@
 import ax from "../../../axios.js";
 import { useEffect, useState } from 'react';
-import Posts from "../../components/posts/posts.jsx";
+import TrashPosts from "../../components/posts/trashPosts.jsx";
 import "./trash_can.scss";
 
 const TrashCan = () => {
@@ -26,7 +26,7 @@ const TrashCan = () => {
     return (
         <div className="trashCanContainer">
             <h1 className="trashCanTitle">Trash Can</h1>
-            <Posts posts={posts} />
+            <TrashPosts posts={posts} />
         </div>
     );
 }
