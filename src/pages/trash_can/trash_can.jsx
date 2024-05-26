@@ -1,6 +1,6 @@
 import ax from "../../../axios.js";
 import { useEffect, useState } from 'react';
-import Posts from "../../components/posts/posts.jsx";
+import TrashPosts from "../../components/posts/trashPosts.jsx";
 import "./trash_can.scss";
 
 const TrashCan = () => {
@@ -13,7 +13,7 @@ const TrashCan = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const res = await ax.get(`${API_ENDPOINT}/getDeletedPosts`);
+                const res = await ax.get(`${API_ENDPOINT}/api/post/getDeletedPosts`);
                 setPosts(res.data);
             } catch (err) {
                 console.log(err);
@@ -26,7 +26,7 @@ const TrashCan = () => {
     return (
         <div className="trashCanContainer">
             <h1 className="trashCanTitle">Trash Can</h1>
-            <Posts posts={posts} />
+            <TrashPosts posts={posts} />
         </div>
     );
 }
