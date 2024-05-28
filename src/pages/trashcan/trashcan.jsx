@@ -1,6 +1,6 @@
 import ax from "../../../axios.js";
 import { useEffect, useState } from 'react';
-import TrashPosts from "../../components/posts/trashPosts.jsx";
+import TrashPosts from "../../components/posts/TrashPosts.jsx";
 import "./trashcan.scss";
 
 const TrashCan = () => {
